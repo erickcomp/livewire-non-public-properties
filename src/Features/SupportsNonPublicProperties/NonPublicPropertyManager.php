@@ -66,18 +66,6 @@ class NonPublicPropertyManager
             return;
         }
 
-        // $reflProperties = static::getNonStaticAndNonPublicReflectionProperties($component);
-
-        // foreach ($nonPublicPropsMemoData as $encryptedPropName => $encryptedPropValue) {
-        //     $propName = self::decryptPropName($encryptedPropName);
-        //     $propValue = self::decryptPropValue($encryptedPropValue);
-
-        //     $reflectionProperty = $reflProperties[$propName];
-
-        //     $reflectionProperty->setAccessible(true);
-        //     $reflectionProperty->setValue($component, $propValue);
-        // }
-
         $reflProperties = static::getNonStaticAndNonPublicReflectionProperties($component);
         $decryptedProps = \decrypt($nonPublicPropsMemoData);
 
@@ -94,15 +82,6 @@ class NonPublicPropertyManager
             return;
         }
 
-        //$nonPublicPropsMemo = [];
-        // foreach (static::getNonStaticAndNonPublicPropsExcludingLivewireComponentOnes($component) as $propName => $propValue) {
-        //     $nonPublicPropsMemo[self::encryptPropName($propName)] = self::encryptPropValue($propValue);
-        // }
-        //$context->addMemo(self::getNonPublicPropsMemoKey($component), $nonPublicPropsMemo);
-
-        // foreach (static::getNonStaticAndNonPublicPropsExcludingLivewireComponentOnes($component) as $propName => $propValue) {
-        //     $nonPublicPropsMemo[$propName] = self::encryptPropValue($propValue);
-        // }
         $encryptedProps = \encrypt(static::getNonStaticAndNonPublicPropsExcludingLivewireComponentOnes($component));
         $context->addMemo(self::getNonPublicPropsMemoKey($component), $encryptedProps);
     }
@@ -129,30 +108,8 @@ class NonPublicPropertyManager
 
     private static function getNonPublicPropsMemoKey(LivewireComponent $component): string
     {
-        //return \crc32('nonPublicPropsMemoKey:' . $component->getId());
-        //return \encrypt('nonPublicPropsMemoKey:' . $component->getId());
         return \hash('md5', 'nonPublicPropsMemoKey:' . $component->getId());
     }
-
-    // private static function encryptPropName(string $propName): string
-    // {
-    //     return \encrypt($propName, false);
-    // }
-
-    // private static function decryptPropName(string $propName): string
-    // {
-    //     return \decrypt($propName, false);
-    // }
-
-    // private static function encryptPropValue(mixed $propValue)
-    // {
-    //     return \encrypt($propValue);
-    // }
-
-    // private static function decryptPropValue(string $propValue)
-    // {
-    //     return \decrypt($propValue);
-    // }
 
     private static function isUsingNonPublicPropsFeature(LivewireComponent $component): bool
     {

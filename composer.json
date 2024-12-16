@@ -1,6 +1,5 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "version": "dev-master",
     "name": "erickcomp/livewire-non-public-properties",
     "type": "library",
     "description": "Provides support for non-public (protected/private) properties on Livewire Components",
@@ -31,6 +30,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
