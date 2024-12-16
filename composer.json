@@ -1,0 +1,36 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "version": "dev-master",
+    "name": "erickcomp/livewire-non-public-properties",
+    "type": "library",
+    "description": "Provides support for non-public (protected/private) properties on Livewire Components",
+    "keywords": ["laravel", "livewire", "protected", "private", "properties", "property"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.31",
+        "livewire/livewire": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErickComp\\LivewireNonPublicProperties\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErickComp\\LivewireNonPublicProperties\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
